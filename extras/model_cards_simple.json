@@ -1,0 +1,302 @@
+[
+  {
+    "model_id": "google/gemma-3-27b-it",
+    "card_hash": "c41e39b345afbed23425d72d2f0675363531f0dfac5eb3515db939fc2340bac6",
+    "token_count": 6438,
+    "card_length": 25117
+  },
+  {
+    "model_id": "google/gemma-3-12b-it",
+    "card_hash": "bcd00f0d73a59772e5cac6a98519e8f5eca15f1354cd3889c916e45ba16d8c2e",
+    "token_count": 6439,
+    "card_length": 25120
+  },
+  {
+    "model_id": "google/gemma-3-4b-it",
+    "card_hash": "eb6df732fd79f239d46a2bbc75302795cf293acd5b75fcc01995344da02aa0bf",
+    "token_count": 6439,
+    "card_length": 25116
+  },
+  {
+    "model_id": "microsoft/Florence-2-large",
+    "card_hash": "16212f1929e4992649d18b812e0ebf7ebbbaffd90a5ba23dfdc5c78df2f92ac2",
+    "token_count": 3998,
+    "card_length": 16301
+  },
+  {
+    "model_id": "OpenGVLab/InternVL3_5-GPT-OSS-20B-A4B-Preview-HF",
+    "card_hash": "df85730e66c214fbb36542054c64c93837128b8963b1d987e2ac11af6b6426ec",
+    "token_count": 11885,
+    "card_length": 42709
+  },
+  {
+    "model_id": "microsoft/Florence-2-base",
+    "card_hash": "e49de5527bd39688745ce20388bf3f31fdb891abc0e6950a3f64630114769d17",
+    "token_count": 3668,
+    "card_length": 14791
+  },
+  {
+    "model_id": "google/medgemma-4b-it",
+    "card_hash": "3717e58eac9c9957c8f80e58d8f3e4854759da9f7abe76862aa100ce8b5d3aab",
+    "token_count": 8827,
+    "card_length": 35050
+  },
+  {
+    "model_id": "dengcao/GLM-4.1V-9B-Thinking-AWQ",
+    "card_hash": "15bbc10b426312b36bc6f815c36c59830f3d10d40f385595afa25eac26aa6656",
+    "token_count": 3384,
+    "card_length": 12163
+  },
+  {
+    "model_id": "Qwen/Qwen2.5-Omni-3B",
+    "card_hash": "9b436a82898fa8f1e8559d1aea114052e7d471c4a5319676e033cbacc08ebcc1",
+    "token_count": 13633,
+    "card_length": 36770
+  },
+  {
+    "model_id": "meta-llama/Llama-4-Scout-17B-16E-Instruct",
+    "card_hash": "19659e477d9e582b5cdd9a2bac1658d5e5e7a2722b2efdd4248c06398c87882f",
+    "token_count": 7446,
+    "card_length": 32511
+  },
+  {
+    "model_id": "Qwen/Qwen3-Omni-30B-A3B-Instruct",
+    "card_hash": "0e44065c4c4a27071f7239afd5b5a33af5bc2e437dd7ea9950e51aafabfde3df",
+    "token_count": 28055,
+    "card_length": 90231
+  },
+  {
+    "model_id": "zai-org/GLM-4.1V-9B-Thinking",
+    "card_hash": "963a958a8bd2d1a00c6aee00db1e545b23d2ad8a98dc94521f29cead70fb68b1",
+    "token_count": 1100,
+    "card_length": 4307
+  },
+  {
+    "model_id": "google/gemma-3n-E2B-it",
+    "card_hash": "1e162c26e2a7d8f3d6d96dd18fb1b80a8196677b975b891b4bd146a43522ebdd",
+    "token_count": 5943,
+    "card_length": 24495
+  },
+  {
+    "model_id": "abhishekchohan/gemma-3-12b-it-quantized-W4A16",
+    "card_hash": "048d8bf59272a30469059e4ee9bc9553f73327a9a185332ac173dfcf78998aa6",
+    "token_count": 484,
+    "card_length": 1753
+  },
+  {
+    "model_id": "zai-org/GLM-4.6V-Flash",
+    "card_hash": "84849e79dce9bd27688af744cd10bf7ffb14f92dda0c31dfedaad510b802db2f",
+    "token_count": 2091,
+    "card_length": 8353
+  },
+  {
+    "model_id": "HuggingFaceTB/SmolVLM2-256M-Video-Instruct",
+    "card_hash": "25f0d36cb69a8f7185f945288236d61e519a206800e89a5ae64111924fdb6952",
+    "token_count": 2905,
+    "card_length": 10851
+  },
+  {
+    "model_id": "lmstudio-community/GLM-4.6V-Flash-MLX-4bit",
+    "card_hash": "85ef2e9b03d082fb7be44a8cd4343c47c1ad56dc23f156ee8dbb8d5a6268a3e7",
+    "token_count": 522,
+    "card_length": 2221
+  },
+  {
+    "model_id": "lmstudio-community/GLM-4.6V-Flash-MLX-8bit",
+    "card_hash": "466d36d262b83a0611dbd41755beaa2c0c246f6861fe0e84682a233a0d7465ec",
+    "token_count": 522,
+    "card_length": 2221
+  },
+  {
+    "model_id": "Qwen/Qwen2.5-Omni-7B",
+    "card_hash": "56f828c01cf5a3073a3968883c4dcbfef715af67b9295b66eb4d4941eef1680e",
+    "token_count": 13655,
+    "card_length": 36820
+  },
+  {
+    "model_id": "lmstudio-community/GLM-4.6V-Flash-MLX-6bit",
+    "card_hash": "df5ce430c45c4e798916192903be5118313d0865bec53dd8757626844a101b18",
+    "token_count": 522,
+    "card_length": 2221
+  },
+  {
+    "model_id": "cyankiwi/GLM-4.6V-AWQ-4bit",
+    "card_hash": "7b60db18de5f4c98e99e3dcc9f94261d8cd3f3abfefc67b16ee206f345fa2bd8",
+    "token_count": 2467,
+    "card_length": 9396
+  },
+  {
+    "model_id": "HuggingFaceTB/SmolVLM2-500M-Video-Instruct",
+    "card_hash": "afc4bf5f519438b221a84292979a9eac3de4b9726e5baaa82033c55f59f9f7a5",
+    "token_count": 2907,
+    "card_length": 10860
+  },
+  {
+    "model_id": "gaunernst/gemma-3-27b-it-int4-awq",
+    "card_hash": "153a97e33fb6a282b6a85594bf0dff908f55b7682e61d52b9bfe9805db05b5a6",
+    "token_count": 6591,
+    "card_length": 25623
+  },
+  {
+    "model_id": "HuggingFaceTB/SmolVLM2-2.2B-Instruct",
+    "card_hash": "8e46e92a3a40643b85a6df905b1a2014bcb7a01daaf6566588c89a95c5c6e700",
+    "token_count": 3118,
+    "card_length": 11432
+  },
+  {
+    "model_id": "zai-org/GLM-4.6V",
+    "card_hash": "2fd45a740ae60a4a1495ffdb643fe24de88b2e0ecdbb7aa9eb9b1c241016afea",
+    "token_count": 2090,
+    "card_length": 8344
+  },
+  {
+    "model_id": "lmstudio-community/gemma-3n-E4B-it-MLX-4bit",
+    "card_hash": "f9d4e1e7bd521caf5d6b862e939d083dddbd62c1f088ab869e0497aae2d6f15c",
+    "token_count": 610,
+    "card_length": 2639
+  },
+  {
+    "model_id": "unsloth/gemma-3-12b-it-unsloth-bnb-4bit",
+    "card_hash": "40e6e640e0464f70440aa502603a16768dee2fc04ec26a26fc8dd0241eabf001",
+    "token_count": 6619,
+    "card_length": 24976
+  },
+  {
+    "model_id": "meta-llama/Llama-4-Maverick-17B-128E-Instruct",
+    "card_hash": "cae8c581b1787780d095f0f827cee3469014f642cb7d054c0cc7aed5d156d5e3",
+    "token_count": 7446,
+    "card_length": 32519
+  },
+  {
+    "model_id": "lmstudio-community/gemma-3n-E4B-it-MLX-bf16",
+    "card_hash": "dc4004e8d162fb093c6174812fab22546d403537ab0581878c60fc1796d132b6",
+    "token_count": 610,
+    "card_length": 2641
+  },
+  {
+    "model_id": "openbmb/MiniCPM-o-2_6",
+    "card_hash": "6df762847c94dd0b6dcdc9ab2ed831bff299c55155b6215766fbd6257bf27162",
+    "token_count": 15175,
+    "card_length": 50059
+  },
+  {
+    "model_id": "lmstudio-community/gemma-3n-E4B-it-MLX-8bit",
+    "card_hash": "53c87a552c5561f129e1c3c02493d36bcb06f50653b791b98f18e39f7459d70c",
+    "token_count": 610,
+    "card_length": 2639
+  },
+  {
+    "model_id": "lmstudio-community/gemma-3n-E4B-it-MLX-6bit",
+    "card_hash": "de6d4c285f73b5a8fcb56810df0d250dda304318e2a6711c93179697d1f02eda",
+    "token_count": 610,
+    "card_length": 2639
+  },
+  {
+    "model_id": "OpenGVLab/InternVL3-1B-hf",
+    "card_hash": "6badc5c414fd6fcb1b9927480c43213ac48c32fcc907646c3403cd04614d1078",
+    "token_count": 4081,
+    "card_length": 15970
+  },
+  {
+    "model_id": "unsloth/gemma-3-4b-it",
+    "card_hash": "fba92bd34f1d8581dc1e683709de21dd3fd9bdfb9a9a8738c15a443700c20824",
+    "token_count": 6446,
+    "card_length": 25134
+  },
+  {
+    "model_id": "google/gemma-3n-E4B-it",
+    "card_hash": "9abba3d9811d38df10311cc3f24c52317a9edb50d390945e5a70802750b227b8",
+    "token_count": 5941,
+    "card_length": 24461
+  },
+  {
+    "model_id": "mlx-community/gemma-3-12b-it-qat-4bit",
+    "card_hash": "2606c6301157499b14d6187da214eb5410678901c931612fc2cc5ae3c2dfa625",
+    "token_count": 281,
+    "card_length": 883
+  },
+  {
+    "model_id": "zai-org/AutoGLM-Phone-9B",
+    "card_hash": "8a63836f7cc7549493f07cb3b2e381a641fe74b03280f4730cd3bf7cc509c8b5",
+    "token_count": 744,
+    "card_length": 2917
+  },
+  {
+    "model_id": "unsloth/gemma-3-27b-it-bnb-4bit",
+    "card_hash": "58d98c4bdfce94b2eb3b22e9723d954059aaaa83db1e2251054e6893efb111b6",
+    "token_count": 6617,
+    "card_length": 24957
+  },
+  {
+    "model_id": "mlx-community/gemma-3-27b-it-qat-4bit",
+    "card_hash": "f4abfa4e4164f877089d8b31494828873744fb0c335033a1e4dfede627933fc6",
+    "token_count": 281,
+    "card_length": 883
+  },
+  {
+    "model_id": "meta-llama/Llama-4-Maverick-17B-128E-Instruct-FP8",
+    "card_hash": "5c514f5a2aefa6998a8b6ad37e44dbfb4b8a89364ac59c46bdca2b077e9e0187",
+    "token_count": 7298,
+    "card_length": 31963
+  },
+  {
+    "model_id": "meta-llama/Llama-Guard-4-12B",
+    "card_hash": "50da205cb878643efa43cb6d585173d7de5c8ffa260eef5ed31ed4acad4a3e14",
+    "token_count": 5503,
+    "card_length": 23383
+  },
+  {
+    "model_id": "deepseek-ai/Janus-Pro-7B",
+    "card_hash": "1230925dfbcf1681345543270ca3ea1d37aebdde72a0356e9c0771e98565e18e",
+    "token_count": 657,
+    "card_length": 2545
+  },
+  {
+    "model_id": "RioJune/AG-KD",
+    "card_hash": "d7b300e2cb9ad7293e5d4e2d4a45c599833e68bc02f108e4afbdfce2ca318461",
+    "token_count": 847,
+    "card_length": 3609
+  },
+  {
+    "model_id": "trl-internal-testing/tiny-Gemma3ForConditionalGeneration",
+    "card_hash": "0c558f18928442988565ef22963085fcdfc09917a471bb9c5d2bfae43be4bdfa",
+    "token_count": 48,
+    "card_length": 190
+  },
+  {
+    "model_id": "unsloth/gemma-3-27b-it-GGUF",
+    "card_hash": "58d98c4bdfce94b2eb3b22e9723d954059aaaa83db1e2251054e6893efb111b6",
+    "token_count": 6617,
+    "card_length": 24957
+  },
+  {
+    "model_id": "unsloth/gemma-3-4b-it-GGUF",
+    "card_hash": "526f1ff0888c815e6ada45e9730e785a6772aa7441fc696dedbae17faaede92b",
+    "token_count": 6617,
+    "card_length": 24956
+  },
+  {
+    "model_id": "florence-community/Florence-2-large-ft",
+    "card_hash": "1a121ef201b8c85a41692facb4911e7ad57fa82210eccbcafc0f2382bd42e454",
+    "token_count": 3343,
+    "card_length": 13437
+  },
+  {
+    "model_id": "CohereLabs/aya-vision-8b",
+    "card_hash": "5d9d525391533a66d309c92de34ea519b53851199e0ce5ff35a63db151a89eb9",
+    "token_count": 2395,
+    "card_length": 8651
+  },
+  {
+    "model_id": "google/gemma-3-4b-pt",
+    "card_hash": "720809c69c7d9664ce64b73307231ab57c17896fa0677e5e24d343020333e050",
+    "token_count": 6164,
+    "card_length": 24005
+  },
+  {
+    "model_id": "Qwen/Qwen3-Omni-30B-A3B-Thinking",
+    "card_hash": "0e44065c4c4a27071f7239afd5b5a33af5bc2e437dd7ea9950e51aafabfde3df",
+    "token_count": 28055,
+    "card_length": 90231
+  }
+]

@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stack8s - Database Analysis Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar">
+        <div class="logo">
+            <h1>Stack8s</h1>
+            <p>Database Analysis</p>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#overview" class="nav-link active" data-section="overview">📊 Overview</a></li>
+                <li><a href="#compute" class="nav-link" data-section="compute">💻 Compute Instances</a></li>
+                <li><a href="#marketplace" class="nav-link" data-section="marketplace">📦 Marketplace Packages</a></li>
+                <li><a href="#contract" class="nav-link" data-section="contract">📋 Data Contract</a></li>
+            </ul>
+        </nav>
+        <div class="sidebar-footer">
+            <p>Generated: <span id="timestamp"></span></p>
+            <p class="version">v1.0</p>
+        </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="content">
+        <!-- Loading State -->
+        <div id="loading" class="loading">
+            <div class="spinner"></div>
+            <p>Loading dashboard data...</p>
+        </div>
+
+        <!-- Error State -->
+        <div id="error" class="error-container" style="display: none;">
+            <h2>⚠️ Unable to Load Data</h2>
+            <p>The dashboard cannot load markdown files due to browser security restrictions.</p>
+            <div class="error-instructions">
+                <h3>Solution:</h3>
+                <p>Start a local web server in the project directory:</p>
+                <pre><code>python -m http.server 8000</code></pre>
+                <p>Then open: <a href="http://localhost:8000/dashboard/index.html">http://localhost:8000/dashboard/index.html</a></p>
+            </div>
+        </div>
+
+        <!-- Overview Section -->
+        <section id="overview-section" class="section active">
+            <h1>Database Analysis Overview</h1>
+            <p class="subtitle">Comprehensive data profiling for Stack8s AI Architect</p>
+            <div class="hint" data-help="ui.hint" data-kind="note" data-source="docs/*">Tip: click any underlined metric for an explanation.</div>
+
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-value" id="total-instances" data-help="overview.total_instances" data-kind="count" data-source="docs/instances-profile.md">-</div>
+                    <div class="stat-label">Compute Instances</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="total-packages" data-help="overview.total_packages" data-kind="count" data-source="docs/packages-profile.md">-</div>
+                    <div class="stat-label">Marketplace Packages</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="total-providers" data-help="overview.total_providers" data-kind="count" data-source="docs/instances-profile.md">-</div>
+                    <div class="stat-label">Cloud Providers</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="total-regions" data-help="overview.total_regions" data-kind="count" data-source="docs/db-map.md">-</div>
+                    <div class="stat-label">Geographic Regions</div>
+                </div>
+            </div>
+
+            <div class="cards-grid">
+                <div class="card">
+                    <h2>🗄️ Database Schema</h2>
+                    <ul id="schema-summary"></ul>
+                </div>
+                <div class="card">
+                    <h2>✅ Data Quality</h2>
+                    <ul id="quality-summary"></ul>
+                </div>
+                <div class="card">
+                    <h2>⚠️ Critical Gaps</h2>
+                    <ul id="gaps-summary"></ul>
+                </div>
+                <div class="card">
+                    <h2>🎯 Key Findings</h2>
+                    <ul id="findings-summary"></ul>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2>Provider Distribution</h2>
+                <canvas id="provider-chart" width="800" height="300" data-help="charts.provider_distribution" data-kind="chart" data-source="docs/instances-profile.md"></canvas>
+            </div>
+        </section>
+
+        <!-- Compute Section -->
+        <section id="compute-section" class="section">
+            <h1>💻 Compute Instances Profiling</h1>
+            <p class="subtitle">Analysis of cloud.instances table (16,695 rows)</p>
+            <div class="hint" data-help="ui.hint" data-kind="note" data-source="docs/*">Tip: click any underlined metric for an explanation.</div>
+
+            <div class="stats-grid">
+                <div class="stat-card success">
+                    <div class="stat-value" data-help="instances.coverage.cpu_ram" data-kind="percent" data-value="99.7" data-source="docs/instances-profile.md">99.7%</div>
+                    <div class="stat-label">CPU/RAM Coverage</div>
+                </div>
+                <div class="stat-card success">
+                    <div class="stat-value" data-help="instances.coverage.pricing" data-kind="percent" data-value="98.5" data-source="docs/instances-profile.md">98.5%</div>
+                    <div class="stat-label">Pricing Coverage</div>
+                </div>
+                <div class="stat-card warning">
+                    <div class="stat-value" data-help="instances.coverage.gpu_model" data-kind="percent" data-value="4.7" data-source="docs/instances-profile.md">4.7%</div>
+                    <div class="stat-label">GPU Model Coverage</div>
+                </div>
+                <div class="stat-card warning">
+                    <div class="stat-value" data-help="instances.coverage.gpu_count" data-kind="percent" data-value="89.7" data-source="docs/instances-profile.md">89.7%</div>
+                    <div class="stat-label">GPU Count Coverage</div>
+                </div>
+            </div>
+
+            <div class="cards-grid">
+                <div class="card">
+                    <h2>✅ Trusted Fields</h2>
+                    <div class="field-list" id="trusted-fields"></div>
+                </div>
+                <div class="card">
+                    <h2>⚠️ Sparse Fields</h2>
+                    <div class="field-list" id="sparse-fields"></div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2>GPU Type Distribution</h2>
+                <canvas id="gpu-chart" width="800" height="300" data-help="charts.gpu_model_distribution" data-kind="chart" data-source="docs/instances-profile.md"></canvas>
+            </div>
+
+            <div class="card">
+                <h2>Pricing Analysis</h2>
+                <div class="pricing-stats" id="pricing-stats"></div>
+            </div>
+
+            <div class="card">
+                <h2>📝 Key Insights</h2>
+                <ul id="compute-insights"></ul>
+            </div>
+        </section>
+
+        <!-- Marketplace Section -->
+        <section id="marketplace-section" class="section">
+            <h1>📦 Marketplace Packages Profiling</h1>
+            <p class="subtitle">Analysis of cloud.bitnami_packages table (13,435 packages)</p>
+            <div class="hint" data-help="ui.hint" data-kind="note" data-source="docs/*">Tip: click any underlined metric for an explanation.</div>
+
+            <div class="stats-grid">
+                <div class="stat-card success">
+                    <div class="stat-value" data-help="packages.coverage.description" data-kind="percent" data-value="99.5" data-source="docs/packages-profile.md">99.5%</div>
+                    <div class="stat-label">Description Coverage</div>
+                </div>
+                <div class="stat-card success">
+                    <div class="stat-value" data-help="packages.coverage.install_identifiers" data-kind="percent" data-value="100" data-source="docs/packages-profile.md">100%</div>
+                    <div class="stat-label">Version & Install URL</div>
+                </div>
+                <div class="stat-card danger">
+                    <div class="stat-value" data-help="packages.coverage.category" data-kind="percent" data-value="31.9" data-source="docs/packages-profile.md">31.9%</div>
+                    <div class="stat-label">Category Coverage</div>
+                </div>
+                <div class="stat-card warning">
+                    <div class="stat-value" data-help="packages.coverage.keywords_populated" data-kind="percent" data-value="42" data-source="docs/packages-profile.md">42%</div>
+                    <div class="stat-label">Keywords Populated</div>
+                </div>
+            </div>
+
+            <div class="cards-grid">
+                <div class="card">
+                    <h2>📂 Existing Categories</h2>
+                    <div id="categories-list"></div>
+                </div>
+                <div class="card">
+                    <h2>🏷️ Top Keywords</h2>
+                    <div id="keywords-list"></div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2>Category Distribution</h2>
+                <canvas id="category-chart" width="800" height="300" data-help="charts.package_category_distribution" data-kind="chart" data-source="docs/packages-profile.md"></canvas>
+            </div>
+
+            <div class="card">
+                <h2>🎯 Proposed AI Stack Taxonomy</h2>
+                <div class="taxonomy-grid" id="taxonomy-grid"></div>
+            </div>
+
+            <div class="card">
+                <h2>📝 Key Insights</h2>
+                <ul id="marketplace-insights"></ul>
+            </div>
+        </section>
+
+        <!-- Data Contract Section -->
+        <section id="contract-section" class="section">
+            <h1>📋 V1 Data Contract</h1>
+            <p class="subtitle">What the AI can and cannot reliably recommend</p>
+            <div class="hint" data-help="ui.hint" data-kind="note" data-source="docs/*">Tip: click any underlined metric for an explanation.</div>
+
+            <div class="cards-grid">
+                <div class="card success-card">
+                    <h2>✅ Supported (V1)</h2>
+                    <div id="supported-decisions"></div>
+                </div>
+                <div class="card danger-card">
+                    <h2>❌ Not Supported</h2>
+                    <div id="unsupported-decisions"></div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2>🔧 Proposed Fixes</h2>
+                <div id="proposed-fixes"></div>
+            </div>
+
+            <div class="cards-grid">
+                <div class="card">
+                    <h2>Compute Recommender</h2>
+                    <h3>Input Schema</h3>
+                    <pre id="compute-input-schema"></pre>
+                    <h3>Limitations</h3>
+                    <ul id="compute-limitations"></ul>
+                </div>
+                <div class="card">
+                    <h2>Marketplace Recommender</h2>
+                    <h3>Input Schema</h3>
+                    <pre id="marketplace-input-schema"></pre>
+                    <h3>Limitations</h3>
+                    <ul id="marketplace-limitations"></ul>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2>📊 Response Quality Tiers</h2>
+                <div class="tiers-table" id="tiers-table"></div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Help / Explanation Modal -->
+    <div id="help-modal" class="help-modal" aria-hidden="true" role="dialog" aria-modal="true">
+        <div class="help-backdrop" data-help-close="true"></div>
+        <div class="help-panel" role="document">
+            <div class="help-header">
+                <div class="help-title-wrap">
+                    <div class="help-kicker">Metric explained</div>
+                    <h2 id="help-title" class="help-title">—</h2>
+                    <div id="help-subtitle" class="help-subtitle">—</div>
+                </div>
+                <button class="help-close" type="button" aria-label="Close" data-help-close="true">X</button>
+            </div>
+
+            <div class="help-tabs" role="tablist" aria-label="Explanation modes">
+                <button class="help-tab active" type="button" role="tab" aria-selected="true" data-help-tab="analytical">Analytical</button>
+                <button class="help-tab" type="button" role="tab" aria-selected="false" data-help-tab="normal">Normal</button>
+                <button class="help-tab" type="button" role="tab" aria-selected="false" data-help-tab="business">Business</button>
+            </div>
+
+            <div class="help-body">
+                <div id="help-analytical" class="help-section active" role="tabpanel"></div>
+                <div id="help-normal" class="help-section" role="tabpanel"></div>
+                <div id="help-business" class="help-section" role="tabpanel"></div>
+            </div>
+
+            <div class="help-footer">
+                <div id="help-source" class="help-source">Source: —</div>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
+

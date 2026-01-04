@@ -1,0 +1,21 @@
+# Hugging Face Hub API
+huggingface-hub>=0.20.0
+
+# Database
+psycopg2-binary>=2.9.9
+
+# HTTP requests with retry
+requests>=2.31.0
+
+# Environment variables
+python-dotenv>=1.0.0
+
+# Logging and utilities
+tenacity>=8.2.3
+
+# Token counting
+tiktoken>=0.5.0
+
+# OpenAI API for embeddings
+openai>=1.0.0
+

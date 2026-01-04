@@ -1,0 +1,234 @@
+Stack8s Backend - File Structure
+=================================
+
+backend/
+│
+├── app/                                    # Main application package
+│   ├── __init__.py                        # Package initialization
+│   ├── main.py                            # FastAPI app + all routes (454 lines)
+│   ├── config.py                          # Settings & environment management
+│   ├── db.py                              # PostgreSQL connection helpers (psycopg3)
+│   ├── schemas.py                         # Pydantic models for validation
+│   ├── ranking.py                         # Deterministic ranking algorithms
+│   │
+│   ├── agents/                            # Agent implementations
+│   │   ├── __init__.py
+│   │   ├── requirements_agent.py          # Agent 1: WorkloadSpec extraction
+│   │   └── architect_agent.py             # Agent 2: Deployment plan builder
+│   │
+│   └── tools/                             # Retrieval tools
+│       ├── __init__.py
+│       ├── compute_tool.py                # Cloud GPU/CPU instance search
+│       ├── k8s_tool.py                    # Kubernetes package search (FTS)
+│       ├── hf_tool.py                     # HuggingFace RAG search (pgvector)
+│       └── local_tool.py                  # Local cluster stub
+│
+├── migrations/                            # Database migrations
+│   └── 001_create_chat_schema.sql        # Chat schema (APPLIED ✅)
+│
+├── scripts/                               # Utility scripts
+│   ├── __init__.py
+│   └── test_api.py                        # Comprehensive test suite (5 scenarios)
+│
+├── docs/                                  # Documentation
+│   └── backend_build_report.md           # Detailed technical report (600+ lines)
+│
+├── README.md                              # Complete documentation (524 lines)
+├── QUICKSTART.md                          # 5-minute setup guide
+├── IMPLEMENTATION_SUMMARY.md              # Implementation overview
+├── STATUS.md                              # Current status & verification
+├── STRUCTURE.txt                          # This file
+│
+├── requirements.txt                       # Python dependencies
+├── .gitignore                             # Git ignore rules
+├── .env.local.example                     # Environment template
+│
+├── setup.sh                               # Linux/Mac setup script
+└── setup.ps1                              # Windows setup script
+
+
+API Endpoints
+=============
+
+Chat API (Multi-turn conversation)
+-----------------------------------
+POST   /api/v1/chat/start                  Create new conversation
+POST   /api/v1/chat/message                Send message, get response
+GET    /api/v1/chat/{conversation_id}     Get conversation history
+
+Tool Debug API (Direct tool access)
+------------------------------------
+POST   /api/v1/tools/compute/search        Search GPU/CPU instances
+POST   /api/v1/tools/k8s/search            Search Kubernetes packages
+POST   /api/v1/tools/hf/search             Search HuggingFace models
+
+Utility
+-------
+GET    /                                    API information
+GET    /health                              Health check
+GET    /docs                                OpenAPI/Swagger UI
+GET    /redoc                               ReDoc documentation
+
+
+Database Schema
+===============
+
+Chat Schema (Created ✅)
+------------------------
+chat.conversations                          Conversation metadata
+  - id (UUID, PK)
+  - created_at, updated_at (timestamps)
+  - title (text, nullable)
+
+chat.messages                               Individual messages
+  - id (UUID, PK)
+  - conversation_id (UUID, FK)
+  - role (user|assistant|system)
+  - content (text)
+  - created_at (timestamp)
+
+Existing Schemas (Used by tools)
+---------------------------------
+cloud.instances                             16,695 GPU/CPU instances
+cloud.bitnami_packages                      13,435 K8s packages
+hf.card_chunks                              96,193 embedded chunks
+hf.models                                   30,403 model metadata
+hf.model_to_card                            28,324 model-card mappings
+hf.card_canon                               26,346 canonical cards
+
+
+Agent Architecture
+==================
+
+Agent 1: Requirements Agent
+----------------------------
+Input:  Conversation history
+Output: WorkloadSpec OR ClarificationResponse
+Logic:  Extract structured requirements or ask 1-3 questions
+LLM:    gpt-4o-mini (temp=0.1)
+
+Agent 2: Architect Agent
+-------------------------
+Input:  WorkloadSpec + context
+Output: DeploymentPlan
+Tools:  local_check → compute_search → hf_search → k8s_search
+Logic:  Synthesize tool results into comprehensive plan
+LLM:    gpt-4o-mini (temp=0.1)
+
+
+Retrieval Tools
+===============
+
+1. Compute Tool (SQL)
+   Source:  cloud.instances
+   Method:  SQL filters + deterministic ranking
+   Ranking: price ASC → vram DESC → gpu_count DESC → name ASC
+   Top-K:   10 (configurable)
+
+2. K8s Tool (FTS + Keyword)
+   Source:  cloud.bitnami_packages
+   Method:  Full-text search + ILIKE matching
+   Ranking: match_score DESC → stars DESC → official → name ASC
+   Top-K:   15 (configurable)
+
+3. HuggingFace Tool (RAG)
+   Source:  hf.card_chunks + hf.models
+   Method:  Vector search → aggregate → rerank
+   Ranking: 0.6*relevance + 0.4*popularity
+   Top-K:   5 (configurable)
+
+4. Local Tool (Stub)
+   Source:  N/A
+   Method:  Always returns "not connected"
+   Purpose: Placeholder for future implementation
+
+
+Test Scenarios
+==============
+
+1. LLM Inference
+   Prompt: "I need to deploy Llama 70B for inference"
+   Expected: Deployment plan with GPU recommendations
+
+2. Computer Vision Training
+   Prompt: "Train object detection model, $3000/mo, 2x24GB GPUs"
+   Expected: Deployment plan with budget-constrained options
+
+3. Stable Diffusion Setup
+   Prompt: "Help me set up Stable Diffusion XL"
+   Expected: Deployment plan with SD models + GPU instances
+
+4. Fine-tuning with MLflow
+   Prompt: "Fine-tune language model with MLflow, $2000/mo, AWS"
+   Expected: Deployment plan with MLflow K8s packages
+
+5. Minimal Input (Clarification)
+   Prompt: "I need some GPUs"
+   Expected: Clarifying questions about task, budget, etc.
+
+
+Quick Start
+===========
+
+1. Setup
+   cd backend
+   ./setup.sh  # or setup.ps1 on Windows
+   cp .env.local.example .env.local
+   # Edit .env.local
+
+2. Start Server
+   python -m app.main
+
+3. Run Tests
+   python scripts/test_api.py
+
+4. Access API
+   http://localhost:8000/docs
+
+
+Configuration
+=============
+
+Required Environment Variables:
+  SUPABASE_DB_URL      PostgreSQL connection string
+  OPENAI_API_KEY       OpenAI API key
+
+Optional (with defaults):
+  OPENAI_CHAT_MODEL    gpt-4o-mini
+  OPENAI_EMBED_MODEL   text-embedding-3-small
+  API_PORT             8000
+  API_HOST             0.0.0.0
+  ENVIRONMENT          development
+
+
+Statistics
+==========
+
+Files Created:        22
+Lines of Code:        ~2,800
+Python Files:         15
+Endpoints:            8
+Agents:               2
+Tools:                4
+Test Scenarios:       5
+Documentation Pages:  5
+
+Database Tables:
+  Created:            2 (chat.conversations, chat.messages)
+  Used:               6 (cloud.*, hf.*)
+  Total Rows:         ~156,000
+
+
+Status
+======
+
+✅ Backend implementation complete
+✅ All requirements met
+✅ Database schema applied
+✅ Test suite ready
+✅ Documentation complete
+✅ No linter errors
+✅ Ready for frontend integration
+
+Next: Build Next.js frontend
+
